@@ -39,8 +39,6 @@ func handleProxyRequest(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(target)
-
 	req, err := http.NewRequest(c.Request.Method, target, c.Request.Body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create request"})
