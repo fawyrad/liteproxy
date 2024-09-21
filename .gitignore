@@ -13,7 +13,6 @@
 vendor/
 
 # Go modules files
-/go.sum
 /go.work
 
 # Logs
