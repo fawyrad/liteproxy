@@ -1,0 +1,37 @@
+# .github/workflows/release.yaml
+
+name: liteproxy release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  # release job
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Pull Latest
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            mkdir -p ~/github && cd ~/github \
+            echo ${{ github.repositoryUrl }} \
+            git clone https://github.com/collinkleest/liteproxy.git \
+            cd ~/github/liteproxy/ \
+            git pull
+      - name: Start Application
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/github/liteproxy/ \
+            docker compose down \
+            docker compose up
