@@ -1,0 +1,12 @@
+services:
+  liteproxy:
+    container_name: liteproxy.service
+    image: 'ckleest/liteproxy:latest'
+    ports:
+      - "8082:8082"
+    environment:
+      - GIN_MODE=release
+    restart: always
+    labels:
+      - "liteproxy webservice"
+      - "corsproxy webservice"
