@@ -19,10 +19,9 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            mkdir -p ~/github && cd ~/github \
-            echo ${{ github.repositoryUrl }} \
-            git clone https://github.com/collinkleest/liteproxy.git \
-            cd ~/github/liteproxy/ \
+            mkdir -p ~/github && cd ~/github
+            git clone https://github.com/collinkleest/liteproxy.git
+            cd ~/github/liteproxy/
             git pull
       - name: Start Application
         uses: appleboy/ssh-action@v1.0.3
@@ -32,6 +31,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd ~/github/liteproxy/ \
-            docker compose down \
+            cd ~/github/liteproxy/
+            docker compose down
             docker compose up
