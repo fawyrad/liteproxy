@@ -1,3 +1,5 @@
+name: liteproxy
+
 services:
   liteproxy:
     container_name: liteproxy.service
