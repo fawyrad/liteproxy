@@ -46,6 +46,8 @@ func handleProxyRequest(c *gin.Context) {
 	}
 
 	req.Header = c.Request.Header
+	// set headers
+	req.Header.Add("Authorization", "Bearer XXXXX")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -77,9 +79,9 @@ func handleRequest(c *gin.Context) {
 }
 
 func main() {
-	const port string = ":8082"
+	const port string = ":3000"
 	r := gin.Default()
-	r.Any("/proxy", handleRequest)
+	r.Any("/", handleRequest)
 	fmt.Println("Running liteproxy on", port)
 	r.Run(port)
 }
