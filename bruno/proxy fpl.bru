@@ -1,0 +1,15 @@
+meta {
+  name: proxy fpl
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{liteproxy-url}}/proxy?url=https://fantasy.premierleague.com/api/leagues-classic/178697/standings/
+  body: none
+  auth: none
+}
+
+params:query {
+  url: https://fantasy.premierleague.com/api/leagues-classic/178697/standings/
+}
